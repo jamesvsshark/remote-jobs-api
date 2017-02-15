@@ -14,16 +14,33 @@ module.exports = function(app) {
         next();
     });
 
-    // Insert routes below
-    app.use('/', require('./api/index'));
+    // Insert API routes
+    app.use('/api/jobs', require('./api/jobs'));
 
-    // send view page on empty route
-    // app.route('/')
-    //     .get(function(req, res) {
-    //         res.render('index', {
-    //             title: 'Express'
-    //         });
-    //     });
+    // app view routes - TODO: make this cleaner in own file
+    app.route('/')
+        .get(function(req, res) {
+            var JobController = require('./controllers/jobs.controller');
+
+            JobController.index(function(jobs) {
+                res.render('jobs', {
+                    title: 'Remote jobs around the Country: Powered by Dice',
+                    jobs: jobs
+                });
+            })
+        });
+
+    app.route('/jobs-by-state')
+        .get(function(req, res) {
+            var JobController = require('./controllers/jobs.controller');
+
+            JobController.getByState(function(results) {
+                res.render('jobs-by-state', {
+                    title: 'Remote jobs around the Country by State: Powered by Dice',
+                    jobs: results
+                });
+            })
+        });
 
     // All undefined asset or api routes should return a 404
     app.route('/*')

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  div.padding-bottom
+    a(href='/') See jobs
+  div
+    table#jobs-by-state-table
+      thead
+        tr: th State
+            th Count
+      tbody
+        each job, j in jobs
+          tr
+            td
+              p #{j}
+            td
+              p #{job.length}

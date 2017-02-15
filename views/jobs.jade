@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  div.padding-bottom
+    a(href='/jobs-by-state') See numbers of jobs by state
+  div
+    table#jobs-table
+      thead
+        tr: th Title
+            th State
+      tbody
+        each job, j in jobs
+          tr
+            td
+              a(href=job.detailUrl) #{job.jobTitle, target='_blank'} - #{job.location} (#{job.state})
+            td
+              p #{job.state}
