@@ -21,6 +21,7 @@ exports.getAllJobsFromDice = (cb) => {
         if (_body.resultItemList)
             _body.resultItemList.forEach(function(job) {
                 job.source = "DICE";
+                job.industry = "Tech";
                 job.state = function() {
                     try {
                         var _location = job.location.split(',');
@@ -34,7 +35,7 @@ exports.getAllJobsFromDice = (cb) => {
                 results.push(job);
             });
 
-        if ((pageCount * 50) < _body.count) {
+        if (_body.lastDocument < _body.count) {
             pageCount++;
             getResults();
         } else {

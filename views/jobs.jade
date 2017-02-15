@@ -13,6 +13,6 @@ block content
         each job, j in jobs
           tr
             td
-              a(href=job.detailUrl) #{job.jobTitle, target='_blank'} - #{job.location} (#{job.state})
+              a(href=job.detailUrl, target='_blank') #{job.jobTitle} - #{job.location} (#{job.state})
             td
               p #{job.state}
