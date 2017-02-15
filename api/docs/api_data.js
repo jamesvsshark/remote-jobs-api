@@ -1,0 +1,1 @@
+define({ "api": [  {    "type": "get",    "url": "/v1/sample",    "title": "Sample get",    "version": "1.0.0",    "name": "index",    "group": "Sample",    "permission": [      {        "name": "admin"      }    ],    "description": "<p>Gets a sample json</p>",    "filename": "api/index.js",    "groupTitle": "Sample"  }] });
